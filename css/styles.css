@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: darkgray;
+}
+
+#road {
+  background-color: lightgray;
+}
