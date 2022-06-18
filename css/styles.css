@@ -12,3 +12,7 @@ body {
 #road {
   background-color: lightgray;
 }
+
+#nnCanvas {
+  background-color: black;
+}

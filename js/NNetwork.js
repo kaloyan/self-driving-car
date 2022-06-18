@@ -1,9 +1,9 @@
-class NeuralNetwork {
-  constructor(neuronCount) {
+export class NeuralNetwork {
+  constructor(neuronCounts) {
     this.layers = [];
 
-    for (let i = 0; i < neuronCount - 1; i++) {
-      this.layers.push(new NNLayer(neuronCount[i], neuronCount[i + 1]));
+    for (let i = 0; i < neuronCounts.length - 1; i++) {
+      this.layers.push(new NNLayer(neuronCounts[i], neuronCounts[i + 1]));
     }
   }
 
@@ -25,7 +25,7 @@ class NNLayer {
     this.biases = new Array(outputNeurons);
 
     this.weights = [];
-    for (let i = 0; i < outputNeurons; i++) {
+    for (let i = 0; i < inputNeurons; i++) {
       this.weights[i] = new Array(outputNeurons);
     }
 
