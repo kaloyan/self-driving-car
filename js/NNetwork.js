@@ -21,7 +21,7 @@ export class NeuralNetwork {
 class NNLayer {
   constructor(inputNeurons, outputNeurons) {
     this.inputs = new Array(inputNeurons);
-    this.outpts = new Array(outputNeurons);
+    this.outputs = new Array(outputNeurons);
     this.biases = new Array(outputNeurons);
 
     this.weights = [];
@@ -34,7 +34,7 @@ class NNLayer {
 
   static #randomize(layer) {
     for (let i = 0; i < layer.inputs.length; i++) {
-      for (let j = 0; j < layer.outpts.length; j++) {
+      for (let j = 0; j < layer.outputs.length; j++) {
         layer.weights[i][j] = Math.random() * 2 - 1; // gives value between -1 to 1
       }
     }
@@ -49,7 +49,7 @@ class NNLayer {
       layer.inputs[i] = givenInputs[i];
     }
 
-    for (let i = 0; i < layer.outpts.length; i++) {
+    for (let i = 0; i < layer.outputs.length; i++) {
       let sum = 0;
 
       for (let j = 0; j < layer.inputs.length; j++) {
@@ -57,12 +57,12 @@ class NNLayer {
       }
 
       if (sum > layer.biases[i]) {
-        layer.outpts[i] = 1;
+        layer.outputs[i] = 1;
       } else {
-        layer.outpts[i] = 0;
+        layer.outputs[i] = 0;
       }
     }
 
-    return layer.outpts;
+    return layer.outputs;
   }
 }

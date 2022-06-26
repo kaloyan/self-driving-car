@@ -1,14 +1,15 @@
 import Car from "./Car.js";
 import Road from "./Road.js";
+import NNVisualizer from "./NNVisualizer.js";
 
 const carCanvas = document.querySelector("#road");
 carCanvas.width = 200;
 
 const nnCanvas = document.querySelector("#nnCanvas");
-nnCanvas.width = 300;
+nnCanvas.width = 500;
 
 const carCtx = carCanvas.getContext("2d");
-const nnCtx = carCanvas.getContext("2d");
+const nnCtx = nnCanvas.getContext("2d");
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 const car = new Car(road.getLaneCenter(1), 100, 30, 50, "AI");
@@ -38,7 +39,8 @@ function animate() {
 
   carCtx.restore();
 
-  Visualizer.drawNetwork(nnCtx, car.brain);
+  NNVisualizer.drawNetwork(nnCtx, car.brain);
+
   requestAnimationFrame(animate);
 }
 

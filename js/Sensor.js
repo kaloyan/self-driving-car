@@ -3,7 +3,7 @@ import { lerp, getIntersection } from "./helpers.js";
 export default class Sensor {
   constructor(car) {
     this.car = car;
-    this.rayCount = 4;
+    this.rayCount = 5;
     this.rayLength = 150;
     this.raySpread = Math.PI / 2;
 
