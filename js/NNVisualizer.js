@@ -22,6 +22,9 @@ export default class NNVusializer {
           network.layers.length == 1 ? 0.5 : i / (network.layers.length - 1)
         );
 
+      // draw with dasher - optional
+      // ctx.setLineDash([7, 3]);
+
       NNVusializer.drawLayer(
         ctx,
         network.layers[i],

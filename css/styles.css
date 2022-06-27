@@ -5,8 +5,22 @@
 body {
   margin: 0;
   overflow: hidden;
-  text-align: center;
   background-color: darkgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#controllButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border-radius: 5px;
+  padding: 5px 5px 7px 5px;
+  margin: 2px;
+  cursor: pointer;
 }
 
 #road {

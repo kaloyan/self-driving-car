@@ -30,7 +30,7 @@ export default class Car {
     this.controls = new Controls(controlType);
   }
 
-  draw(ctx, color) {
+  draw(ctx, color, drawSensors = false) {
     ctx.fillStyle = this.damaged ? "red" : color;
 
     ctx.beginPath();
@@ -42,7 +42,7 @@ export default class Car {
 
     ctx.fill();
 
-    if (this.controlType !== "DUMMY") {
+    if (this.controlType !== "DUMMY" && drawSensors) {
       this.sensor.draw(ctx);
     }
   }
