@@ -1,6 +1,7 @@
 import Car from "./Car.js";
 import Road from "./Road.js";
 import NNVisualizer from "./NNVisualizer.js";
+import { NeuralNetwork } from "./NNetwork.js";
 
 const carCanvas = document.querySelector("#road");
 carCanvas.width = 200;
@@ -14,16 +15,32 @@ const nnCtx = nnCanvas.getContext("2d");
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
 // const car = new Car(road.getLaneCenter(1), 100, 30, 50, "AI");
-const numCars = 10;
+const numCars = 100;
 const cars = genGars(numCars);
 
 let bestCar = cars[0];
 
 if (localStorage.getItem("bestBrain")) {
-  bestCar.brain = JSON.parse(localStorage.getItem("bestBrain"));
+  const savedBrain = JSON.parse(localStorage.getItem("bestBrain"));
+  cars[0].brain = savedBrain;
+
+  for (let i = 1; i < cars.length; i++) {
+    cars[i].brain = JSON.parse(localStorage.getItem("bestBrain"));
+
+    // mutate brain
+    NeuralNetwork.mutateStatic(cars[i].brain, 0.2);
+  }
 }
 
-const traffic = [new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2)];
+const traffic = [
+  new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2),
+  new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2),
+  new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2),
+  new Car(road.getLaneCenter(0), -500, 30, 50, "DUMMY", 2),
+  new Car(road.getLaneCenter(1), -500, 30, 50, "DUMMY", 2),
+  new Car(road.getLaneCenter(1), -700, 30, 50, "DUMMY", 2),
+  new Car(road.getLaneCenter(2), -700, 30, 50, "DUMMY", 2),
+];
 
 function animate(time) {
   for (let i = 0; i < traffic.length; i++) {
@@ -84,7 +101,6 @@ function genGars(num) {
 
 function save() {
   let brain = JSON.stringify(bestCar.brain);
-  // console.log(brain);
   localStorage.setItem("bestBrain", brain);
 }
 

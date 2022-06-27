@@ -1,3 +1,5 @@
+import { lerp } from "./helpers.js";
+
 export class NeuralNetwork {
   constructor(neuronCounts) {
     this.layers = [];
@@ -15,6 +17,24 @@ export class NeuralNetwork {
     }
 
     return outputs;
+  }
+
+  static mutateStatic(network, amount = 1) {
+    network.layers.forEach((layer) => {
+      for (let i = 0; i < layer.biases.length; i++) {
+        layer.biases[i] = lerp(layer.biases[i], Math.random() * 2 - 1, amount);
+      }
+
+      for (let i = 0; i < layer.weights.length; i++) {
+        for (let j = 0; j < layer.weights[i].length; j++) {
+          layer.weights[i][j] = lerp(
+            layer.weights[i][j],
+            Math.random() * 2 - 1,
+            amount
+          );
+        }
+      }
+    });
   }
 }
 
